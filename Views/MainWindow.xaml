@@ -8,17 +8,27 @@
         Background="{StaticResource BackgroundBrush}"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="90" />
+        </Grid.RowDefinitions>
 
-        <!-- Sidebar -->
-        <views:Sidebar Grid.Column="0" DataContext="{Binding Sidebar}" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Main Content Placeholder -->
-        <Border Grid.Column="1" Background="{StaticResource PanelBrush}" Margin="16,0,0,0" CornerRadius="8">
-            <TextBlock Text="Main content area" Foreground="{StaticResource SecondaryTextBrush}" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        </Border>
+            <!-- Sidebar -->
+            <views:Sidebar Grid.Column="0" DataContext="{Binding Sidebar}" />
+
+            <!-- Main Content Placeholder -->
+            <Border Grid.Column="1" Background="{StaticResource PanelBrush}" Margin="16,0,0,0" CornerRadius="8">
+                <TextBlock Text="Main content area" Foreground="{StaticResource SecondaryTextBrush}" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+        </Grid>
+
+        <!-- Player Bar -->
+        <views:PlayerBar Grid.Row="1" />
     </Grid>
 </Window>
