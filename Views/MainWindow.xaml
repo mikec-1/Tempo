@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Sidebar -->
-        <views:Sidebar Grid.Column="0" />
+        <views:Sidebar Grid.Column="0" DataContext="{Binding Sidebar}" />
 
         <!-- Main Content Placeholder -->
         <Border Grid.Column="1" Background="{StaticResource PanelBrush}" Margin="16,0,0,0" CornerRadius="8">
