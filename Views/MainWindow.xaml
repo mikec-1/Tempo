@@ -1,7 +1,7 @@
-<Window x:Class="Tempo.MainWindow"
+<Window x:Class="Tempo.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:Tempo"
+        xmlns:views="clr-namespace:Tempo.Views"
         Title="Tempo"
         Width="1200" Height="750"
         MinWidth="1000" MinHeight="650"
@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Sidebar -->
-        <local:Sidebar Grid.Column="0" />
+        <views:Sidebar Grid.Column="0" />
 
         <!-- Main Content Placeholder -->
         <Border Grid.Column="1" Background="{StaticResource PanelBrush}" Margin="16,0,0,0" CornerRadius="8">
