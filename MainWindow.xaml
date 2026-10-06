@@ -1,0 +1,8 @@
+<Window x:Class="Tempo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tempo"
+        Width="1200" Height="750"
+        Background="#121212"
+        WindowStartupLocation="CenterScreen">
+</Window>
