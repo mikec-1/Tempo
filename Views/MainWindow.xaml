@@ -40,35 +40,22 @@
 
                 <!-- Right: Window controls -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Width="46" Height="32" Background="Transparent" BorderThickness="0"
-                            Click="OnMinimizeClick" Cursor="Hand"
+                    <Button Style="{StaticResource TitleBarButtonStyle}"
+                            Click="OnMinimizeClick"
                             WindowChrome.IsHitTestVisibleInChrome="True">
                         <TextBlock Text="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="10" Foreground="#FFFFFF" />
                     </Button>
-                    <Button Width="46" Height="32" Background="Transparent" BorderThickness="0"
-                            Click="OnMaximizeClick" Cursor="Hand"
+                    <Button Style="{StaticResource TitleBarButtonStyle}"
+                            Click="OnMaximizeClick"
                             WindowChrome.IsHitTestVisibleInChrome="True">
                         <TextBlock x:Name="MaximizeIcon" Text="&#xE922;" FontFamily="Segoe MDL2 Assets" FontSize="10" Foreground="#FFFFFF" />
                     </Button>
-                    <Button Background="Transparent" BorderThickness="0"
-                            Click="OnCloseClick" Cursor="Hand"
+                    <Button Style="{StaticResource CloseButtonStyle}"
+                            Click="OnCloseClick"
                             WindowChrome.IsHitTestVisibleInChrome="True">
-                        <TextBlock x:Name="CloseIcon" Text="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="10" Foreground="#FFFFFF">
-                            <TextBlock.Style>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
-                                            <Setter Property="Foreground" Value="#E81123" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
+                        <TextBlock x:Name="CloseIcon" Text="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="10" Foreground="#FFFFFF" />
                     </Button>
                 </StackPanel>
-
-                <!-- Title bar drag area (transparent, covers entire row) -->
-                <Border Grid.ColumnSpan="3" Background="Transparent" IsHitTestVisible="True" />
             </Grid>
         </Border>
 

@@ -71,6 +71,8 @@ a new task.
 - Only read and write files inside this project folder. No temp files elsewhere.
 - Custom control templates must replace the default Windows look completely
   (Button, RepeatButton, ScrollBar, Thumb): no borders or blue hover left over.
+- Don't place transparent overlay elements on top of interactive controls
+  (later siblings in a Grid draw on top). They block mouse hover and clicks.
 - An element with Visibility="Collapsed" can't receive mouse events. Use
   Opacity="0" for hover-reveal effects.
 - Don't leave unused fields or empty event handlers.
