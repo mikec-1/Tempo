@@ -63,7 +63,7 @@ namespace Tempo.Services
                 ("Focus Flow", 2),
                 ("Chill Vibes", 3),
                 ("Deep Focus", 6),
-                ("Discover Weekly", 15)
+                ("Discover Weekly", 9)
             };
 
             foreach (var item in quickAccess)
@@ -71,7 +71,7 @@ namespace Tempo.Services
                 _quickAccessItems.Add(new QuickAccessItem
                 {
                     Title = item.Title,
-                    ThumbnailColor = colors[item.ColorIndex]
+                    ThumbnailColor = colors[item.ColorIndex % colors.Length]
                 });
             }
 
