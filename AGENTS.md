@@ -40,6 +40,8 @@ a new task.
   - MinWidth/MinHeight/MaxWidth/MaxHeight must be numbers, never "Auto".
   - Run.Text, TextBox.Text and other editable properties bind TwoWay by
     default. Use Mode=OneWay when binding to read-only values.
+  - Special characters in XAML use XML entities (e.g. `&#x2022;` for •),
+    never C# escapes like `•`.
 - Table-like lists (header row + item rows): header and rows must use the same
   margins and column widths, and ListViewItem needs
   HorizontalContentAlignment="Stretch" so rows fill the width.
@@ -64,6 +66,8 @@ a new task.
 - Commit after each successful build.
 - Then STOP and tell me what changed, so I can run and test the app.
 - Never claim something works just because the build passed.
+- Before writing your summary, run `git show --stat` and only describe changes
+  that are actually in the commit.
 - If the same error fails 3 times, stop and explain the problem.
 - When you fix a bug caused by a mistake that could happen again, end your
   summary with "Proposed rule: <one line>". Do NOT edit AGENTS.md yourself.
