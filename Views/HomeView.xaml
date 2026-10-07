@@ -174,7 +174,8 @@
 
                             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                           VerticalScrollBarVisibility="Disabled"
-                                          Padding="0">
+                                          Padding="0"
+                                           utils:ScrollHelper.BubbleMouseWheel="True">
                                 <ItemsControl ItemsSource="{Binding Cards}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>

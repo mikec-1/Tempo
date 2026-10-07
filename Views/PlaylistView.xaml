@@ -146,6 +146,11 @@
                           Background="Transparent"
                           BorderThickness="0"
                           Margin="0,4,0,24">
+                    <ListView.Template>
+                        <ControlTemplate TargetType="{x:Type ListView}">
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </ListView.Template>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel />

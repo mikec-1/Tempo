@@ -66,6 +66,9 @@ a new task.
   `(seed + j) % length`, or `Math.Abs(x % length)` for indexes.
 - To fix a build error, fix the code. Don't delete a feature (like a hover
   effect) to make the error go away, unless I agree.
+- Never delete a file (or bin/obj) to make a build error go away. Fix the file.
+  If you're stuck, stop and explain the error.
+- Only read and write files inside this project folder. No temp files elsewhere.
 - Custom control templates must replace the default Windows look completely
   (Button, RepeatButton, ScrollBar, Thumb): no borders or blue hover left over.
 - An element with Visibility="Collapsed" can't receive mouse events. Use
