@@ -1,0 +1,216 @@
+<UserControl x:Class="Tempo.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:Tempo.Models"
+             xmlns:utils="clr-namespace:Tempo.Utils">
+    <UserControl.Resources>
+
+        <!-- Play icon geometry -->
+        <Geometry x:Key="PlayIconGeometry">M8 5V19L19 12L8 5Z</Geometry>
+
+        <!-- Quick access tile style -->
+        <Style x:Key="QuickAccessTileStyle" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="80" />
+            <Setter Property="Margin" Value="8,4" />
+            <Setter Property="Background" Value="#282828" />
+            <Setter Property="Foreground" Value="{StaticResource PrimaryTextBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource MainFont}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border x:Name="Border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="52" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0"
+                            Background="{Binding utils:AttachedProperties.ThumbnailColor, RelativeSource={RelativeSource AncestorType=Button}}"
+                            CornerRadius="4,0,0,4" />
+                                    <TextBlock Grid.Column="1"
+                                               Text="{TemplateBinding Content}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Margin="12,0,8,0"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#3E3E3E" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Card item container style -->
+        <Style x:Key="CardItemContainerStyle" TargetType="{x:Type ContentPresenter}">
+            <Setter Property="Margin" Value="0,0,12,0" />
+        </Style>
+
+            <!-- Music card template -->
+        <DataTemplate x:Key="MusicCardTemplate" DataType="{x:Type models:MusicCard}">
+            <Border x:Name="CardBorder" Width="180"
+                    Height="250"
+                    Background="#181818"
+                    CornerRadius="8"
+                    Padding="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Album art placeholder -->
+                    <Border Grid.Row="0"
+                            Height="140"
+                            Background="{Binding ArtColor}"
+                            CornerRadius="4"
+                            Margin="0,0,0,12" />
+
+                    <!-- Title -->
+                    <TextBlock Grid.Row="1"
+                               Text="{Binding Title}"
+                               Foreground="{StaticResource PrimaryTextBrush}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,4" />
+
+                    <!-- Description -->
+                    <TextBlock Grid.Row="2"
+                               Text="{Binding Description}"
+                               Foreground="{StaticResource SecondaryTextBrush}"
+                               FontSize="11"
+                               TextWrapping="Wrap"
+                               Height="36" />
+                </Grid>
+            </Border>
+
+            <!-- Card hover + play button -->
+            <DataTemplate.Triggers>
+                <Trigger SourceName="CardBorder" Property="IsMouseOver" Value="True">
+                    <Setter TargetName="CardBorder" Property="Background" Value="#282828" />
+                </Trigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <!-- Group header style -->
+        <Style x:Key="GroupHeaderTextStyle">
+            <Setter Property="Control.Foreground" Value="{StaticResource PrimaryTextBrush}" />
+            <Setter Property="Control.FontFamily" Value="{StaticResource MainFont}" />
+            <Setter Property="Control.FontSize" Value="22" />
+            <Setter Property="Control.FontWeight" Value="Bold" />
+            <Setter Property="Control.Margin" Value="0,24,0,16" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24,8,24,24">
+
+            <!-- Good evening section -->
+            <TextBlock Text="Good evening"
+                       Style="{StaticResource GroupHeaderTextStyle}"
+                       FontSize="28"
+                       Margin="0,8,0,12" />
+
+            <ItemsControl ItemsSource="{Binding QuickAccessItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:QuickAccessItem}">
+                        <Button Style="{StaticResource QuickAccessTileStyle}"
+                                Content="{Binding Title}"
+                                utils:AttachedProperties.ThumbnailColor="{Binding ThumbnailColor}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Card groups -->
+            <ItemsControl ItemsSource="{Binding CardGroups}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:CardGroup}">
+                        <StackPanel Margin="0,8,0,0">
+                            <TextBlock Text="{Binding GroupTitle}" Style="{StaticResource GroupHeaderTextStyle}" />
+
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollBarVisibility="Disabled"
+                                          Padding="0">
+                                <ItemsControl ItemsSource="{Binding Cards}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type models:MusicCard}">
+                                            <Border x:Name="CardBorder" Width="180" Height="250" Background="#181818" CornerRadius="8" Padding="12">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <!-- Album art placeholder -->
+                                                    <Border Grid.Row="0"
+                                                            Height="140"
+                                                            Background="{Binding ArtColor}"
+                                                            CornerRadius="4"
+                                                            Margin="0,0,0,12" />
+
+                                                    <!-- Title -->
+                                                    <TextBlock Grid.Row="1"
+                                                               Text="{Binding Title}"
+                                                               Foreground="{StaticResource PrimaryTextBrush}"
+                                                               FontSize="13"
+                                                               FontWeight="SemiBold"
+                                                               TextWrapping="Wrap"
+                                                               Margin="0,0,0,4" />
+
+                                                    <!-- Description -->
+                                                    <TextBlock Grid.Row="2"
+                                                               Text="{Binding Description}"
+                                                               Foreground="{StaticResource SecondaryTextBrush}"
+                                                               FontSize="11"
+                                                               TextWrapping="Wrap"
+                                                               Height="36" />
+                                                </Grid>
+                                            </Border>
+
+                                            <!-- Hover trigger -->
+                                            <DataTemplate.Triggers>
+                                                <Trigger SourceName="CardBorder" Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="CardBorder" Property="Background" Value="#282828" />
+                                                </Trigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

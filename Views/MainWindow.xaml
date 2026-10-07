@@ -22,10 +22,8 @@
             <!-- Sidebar -->
             <views:Sidebar Grid.Column="0" DataContext="{Binding Sidebar}" />
 
-            <!-- Main Content Placeholder -->
-            <Border Grid.Column="1" Background="{StaticResource PanelBrush}" Margin="16,0,0,0" CornerRadius="8">
-                <TextBlock Text="Main content area" Foreground="{StaticResource SecondaryTextBrush}" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Border>
+            <!-- Main Content -->
+            <views:HomeView Grid.Column="1" DataContext="{Binding HomeContent}" Margin="16,0,0,0" />
         </Grid>
 
         <!-- Player Bar -->
