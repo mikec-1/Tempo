@@ -120,14 +120,37 @@
             <Setter Property="Minimum" Value="0" />
             <Setter Property="Maximum" Value="100" />
             <Setter Property="Value" Value="70" />
+            <Setter Property="IsMoveToPointEnabled" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Slider}">
                         <Grid>
-                            <Border x:Name="Background" Background="{StaticResource PlayerBarProgressBackgroundBrush}" CornerRadius="2" Height="4" />
                             <Track x:Name="PART_Track">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Background="#FFFFFF" Height="4" />
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" />
+                                </Track.IncreaseRepeatButton>
                                 <Track.Thumb>
-                                    <Thumb Width="12" Height="12" Background="#FFFFFF" SnapsToDevicePixels="True" />
+                                    <Thumb Width="12" Height="12">
+                                        <Thumb.Style>
+                                            <Style TargetType="{x:Type Thumb}">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Thumb}">
+                                                            <Ellipse x:Name="ThumbCircle" Fill="#FFFFFF" Width="12" Height="12" Visibility="Collapsed" />
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="ThumbCircle" Property="Visibility" Value="Visible" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Thumb.Style>
+                                    </Thumb>
                                 </Track.Thumb>
                             </Track>
                         </Grid>
@@ -143,19 +166,37 @@
             <Setter Property="Minimum" Value="0" />
             <Setter Property="Maximum" Value="100" />
             <Setter Property="Value" Value="35" />
+            <Setter Property="IsMoveToPointEnabled" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Slider}">
                         <Grid>
-                            <Border x:Name="Background" Background="{StaticResource PlayerBarProgressBackgroundBrush}" CornerRadius="2" Height="4" />
-                            <Rectangle x:Name="PART_SelectionRange" Fill="#FFFFFF" Height="4" Opacity="0.5" RadiusX="2" RadiusY="2">
-                                <Rectangle.Width>
-                                    <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
-                                </Rectangle.Width>
-                            </Rectangle>
                             <Track x:Name="PART_Track">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Background="#FFFFFF" Height="4" />
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" />
+                                </Track.IncreaseRepeatButton>
                                 <Track.Thumb>
-                                    <Thumb Width="0" Height="0" SnapsToDevicePixels="True" />
+                                    <Thumb Width="12" Height="12">
+                                        <Thumb.Style>
+                                            <Style TargetType="{x:Type Thumb}">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Thumb}">
+                                                            <Ellipse x:Name="ThumbCircle" Fill="#FFFFFF" Width="12" Height="12" Visibility="Collapsed" />
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="ThumbCircle" Property="Visibility" Value="Visible" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Thumb.Style>
+                                    </Thumb>
                                 </Track.Thumb>
                             </Track>
                         </Grid>
