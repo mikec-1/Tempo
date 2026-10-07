@@ -21,7 +21,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
+                        <Grid x:Name="TileGrid">
                             <Border x:Name="Border"
                                     Background="{TemplateBinding Background}"
                                     CornerRadius="4">
@@ -40,10 +40,50 @@
                                                VerticalAlignment="Center" />
                                 </Grid>
                             </Border>
+                            <!-- Play button overlay -->
+                            <Border x:Name="TilePlayBtn"
+                                    Width="36" Height="36"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Margin="0,0,8,4"
+                                    Background="#1ED760"
+                                    Opacity="0"
+                                    IsHitTestVisible="False">
+                                <Border.RenderTransform>
+                                    <TranslateTransform Y="6" />
+                                </Border.RenderTransform>
+                                <Path Data="{StaticResource PlayIconGeometry}" Fill="Black" Stretch="Uniform" Width="16" Height="16">
+                                    <Path.RenderTransform>
+                                        <RotateTransform Angle="-90" />
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Border>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="#3E3E3E" />
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="TilePlayBtn"
+                                                             Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.15" />
+                                            <DoubleAnimation Storyboard.TargetName="TilePlayBtn"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                             From="6" To="0" Duration="0:0:0.15" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="TilePlayBtn"
+                                                             Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.15" />
+                                            <DoubleAnimation Storyboard.TargetName="TilePlayBtn"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                             From="0" To="6" Duration="0:0:0.15" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -97,12 +137,26 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <!-- Album art placeholder -->
-                        <Border Grid.Row="0"
-                                Height="140"
-                                Background="{Binding ArtColor}"
-                                CornerRadius="4"
-                                Margin="0,0,0,12" />
+                        <!-- Art area with play button overlay -->
+                        <Grid x:Name="ArtGrid" Grid.Row="0" Height="140" Margin="0,0,0,12">
+                            <Border Background="{Binding ArtColor}" CornerRadius="4" />
+                            <Border x:Name="CardPlayBtn"
+                                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                    Width="48" Height="48"
+                                    Margin="0,0,6,6"
+                                    Background="#1ED760"
+                                    Opacity="0"
+                                    IsHitTestVisible="False">
+                                <Border.RenderTransform>
+                                    <TranslateTransform Y="6" />
+                                </Border.RenderTransform>
+                                <Path Data="{StaticResource PlayIconGeometry}" Fill="Black" Stretch="Uniform" Width="22" Height="22">
+                                    <Path.RenderTransform>
+                                        <RotateTransform Angle="-90" />
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Border>
+                        </Grid>
 
                         <!-- Title -->
                         <TextBlock Grid.Row="1"
@@ -124,10 +178,30 @@
                   </Border>
             </Button>
 
-                 <!-- Card hover + play button -->
-                <DataTemplate.Triggers>
+                  <!-- Card hover + play button -->
+                 <DataTemplate.Triggers>
                     <Trigger SourceName="CardBorder" Property="IsMouseOver" Value="True">
                         <Setter TargetName="CardBorder" Property="Background" Value="#282828" />
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="CardPlayBtn"
+                                                     Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.15" />
+                                    <DoubleAnimation Storyboard.TargetName="CardPlayBtn"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" From="6" To="0" Duration="0:0:0.15" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="CardPlayBtn"
+                                                     Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.15" />
+                                    <DoubleAnimation Storyboard.TargetName="CardPlayBtn"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" From="0" To="6" Duration="0:0:0.15" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
                     </Trigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
