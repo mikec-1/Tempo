@@ -14,7 +14,7 @@
                       NonClientFrameEdges="None" />
     </WindowChrome.WindowChrome>
 
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
@@ -103,7 +103,7 @@
 
             <!-- Main Content Area -->
             <Border Grid.Column="1" Margin="16,0,0,0">
-    <Grid x:Name="RootGrid">
+<Grid>
                     <!-- Back button bar -->
                     <StackPanel Orientation="Horizontal" 
                                 VerticalAlignment="Top">
@@ -169,6 +169,6 @@
         </Grid>
 
         <!-- Player Bar -->
-        <views:PlayerBar Grid.Row="1" DataContext="{Binding PlayerBar}" />
+        <views:PlayerBar Grid.Row="2" DataContext="{Binding PlayerBar}" />
     </Grid>
 </Window>

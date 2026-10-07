@@ -19,7 +19,7 @@ namespace Tempo.Views
 
             if (WindowState == WindowState.Maximized)
             {
-                RootGrid.Margin = new Thickness(8, 0, 0, 0);
+                RootGrid.Margin = new Thickness(8);
                 MaximizeIcon.Data = (Geometry)FindResource("RestoreGeometry");
             }
             else
