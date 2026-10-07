@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <!-- Custom dark title bar -->
-        <Border Grid.Row="0" Background="#121212" MouseLeftButtonDown="OnTitleBarMouseDown">
+        <Border Grid.Row="0" Background="#121212">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

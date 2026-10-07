@@ -50,20 +50,5 @@ namespace Tempo.Views
         {
             Close();
         }
-
-        private void OnTitleBarMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (e.ClickCount >= 2)
-            {
-                if (WindowState == WindowState.Maximized)
-                    WindowState = WindowState.Normal;
-                else
-                    WindowState = WindowState.Maximized;
-            }
-            else
-            {
-                DragMove();
-            }
-        }
     }
 }
