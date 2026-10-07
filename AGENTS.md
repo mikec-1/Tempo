@@ -8,6 +8,8 @@ a new task.
 - Windows, PowerShell 5.1. Run commands ONE AT A TIME. Never use `&&`.
 - .NET 10 SDK, plain WPF (net10.0-windows, UseWPF). NOT WinUI. No NuGet packages.
 - This folder is already a git repository. Never run `git init`.
+- Never run `git reset`, `git rebase`, `git commit --amend` or anything else
+  that rewrites history. Only add new commits.
 
 ## Commands
 - Build: `dotnet build -nodeReuse:false`
@@ -34,6 +36,10 @@ a new task.
   - Every StaticResource is defined ABOVE where it's used, and each x:Key is
     used only once per resource dictionary.
   - App.xaml has StartupUri="Views/MainWindow.xaml".
+  - A Template setter must reference a ControlTemplate, never a Style.
+  - MinWidth/MinHeight/MaxWidth/MaxHeight must be numbers, never "Auto".
+- ScrollBars: use ONE implicit ScrollBar style with an Orientation="Horizontal"
+  trigger that switches to the horizontal template.
 - Array and list indexes must stay in range (use `% array.Length` for colors).
 - Custom control templates must replace the default Windows look completely
   (Button, RepeatButton, ScrollBar, Thumb): no borders or blue hover left over.
@@ -42,7 +48,8 @@ a new task.
 - Don't leave unused fields or empty event handlers.
 
 ## Workflow
-- Do one step or fix at a time, then build and fix ALL errors.
+- Do one step or fix at a time, then build and fix ALL errors. Don't add
+  extra features I didn't ask for in the same change.
 - Commit after each successful build.
 - Then STOP and tell me what changed, so I can run and test the app.
 - Never claim something works just because the build passed.

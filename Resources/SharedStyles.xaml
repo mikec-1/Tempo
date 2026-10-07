@@ -101,7 +101,7 @@
         <Setter Property="Template" Value="{StaticResource ScrollBarVerticalTemplate}" />
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
-                <Setter Property="MinWidth" Value="Auto" />
+                <Setter Property="MinWidth" Value="0" />
                 <Setter Property="MinHeight" Value="8" />
                 <Setter Property="Template" Value="{StaticResource ScrollBarHorizontalTemplate}" />
             </Trigger>
