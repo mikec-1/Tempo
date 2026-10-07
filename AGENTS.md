@@ -49,6 +49,9 @@ a new task.
   margins and column widths, and ListViewItem needs
   HorizontalContentAlignment="Stretch" so rows fill the width.
 - Put multiple stacked texts in a StackPanel, not in the same Grid cell.
+- Custom title bar: WindowChrome with GlassFrameThickness="0",
+  UseAeroCaptionButtons="False" and ResizeBorderThickness="6". Otherwise
+  Windows keeps invisible caption buttons on top of ours.
 - Standard window icons (minimize, maximize, restore, close) use the built-in
   "Segoe MDL2 Assets" font (E921, E922, E923, E8BB). Don't hand-draw them.
 - Never put a ScrollViewer or ListView inside another ScrollViewer without
