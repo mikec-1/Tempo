@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Tempo.Utils
 {
@@ -23,7 +24,7 @@ namespace Tempo.Utils
 
         private static void OnWheel(object sender, MouseWheelEventArgs e)
         {
-            if (e.Handled || sender is not FrameworkElement el || el.Parent is not UIElement parent) return;
+            if (e.Handled || sender is not FrameworkElement el || VisualTreeHelper.GetParent(el) is not UIElement parent) return;
             e.Handled = true;
             parent.RaiseEvent(new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
             {
