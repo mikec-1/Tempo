@@ -28,7 +28,7 @@ namespace Tempo.ViewModels
             Sidebar = new SidebarViewModel(MockData, OpenPlaylist);
             PlayerBar = new PlayerBarViewModel();
             HomeContent = new HomeViewModel(MockData, OpenPlaylist);
-            GoBackCommand = new RelayCommand(_ => GoBack());
+            GoBackCommand = new RelayCommand(_ => GoBack(), _ => CurrentPlaylist != null);
         }
 
         private void OpenPlaylist(PlaylistModel playlist)

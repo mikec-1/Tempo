@@ -123,14 +123,4 @@
     <!-- Tempo logo: musical note -->
     <Geometry x:Key="TempoLogoGeometry">M12 2C10.34 2 9 3.34 9 5c0 .81.2 1.57.55 2.22L7 10H5v6h2l2-2h2l2 2h2v-6h-2l-2.55-2.78C10.8 11.43 10.41 12 10 13c0-1.66 1.34-3 3-3s3 1.34 3 3h2c0-2.76-2.24-5-5-5z</Geometry>
 
-    <!-- NullToVisibilityConverter -->
-    <Style x:Key="NullToVisibleStyle" TargetType="{x:Type UIElement}">
-        <Setter Property="Visibility" Value="Collapsed" />
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding CurrentPlaylist}" Value="{x:Null}">
-                <Setter Property="Visibility" Value="Visible" />
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-
 </ResourceDictionary>
