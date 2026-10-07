@@ -57,8 +57,12 @@ a new task.
 - Custom title bar: WindowChrome with GlassFrameThickness="0",
   UseAeroCaptionButtons="False" and ResizeBorderThickness="6". Otherwise
   Windows keeps invisible caption buttons on top of ours.
-- Standard window icons (minimize, maximize, restore, close) use the built-in
-  "Segoe MDL2 Assets" font (E921, E922, E923, E8BB). Don't hand-draw them.
+- ALL standard icons use the built-in "Segoe MDL2 Assets" font in a TextBlock,
+  never hand-drawn Path shapes. Window: minimize E921, maximize E922,
+  restore E923, close E8BB. Search E721, play E768, pause E769, previous E892,
+  next E893, shuffle E8B1, repeat E8EE, queue E90B, devices E7F4,
+  volume E767, heart EB51, back E72B, forward E72A. In XAML write them as
+  `&#xE721;`.
 - Never put a ScrollViewer or ListView inside another ScrollViewer without
   passing the mouse wheel through: give the ListView a template with only an
   ItemsPresenter, or use Utils/ScrollHelper BubbleMouseWheel on the inner one.
