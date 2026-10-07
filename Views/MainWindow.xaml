@@ -96,7 +96,7 @@
                                 <ControlTemplate TargetType="{x:Type TextBox}">
                                     <Border Background="{TemplateBinding Background}" CornerRadius="20">
                                          <Grid>
-                                             <Path Data="{StaticResource SearchGeometry}" Fill="{StaticResource SecondaryTextBrush}" Width="16" Height="16" Stretch="Uniform" HorizontalAlignment="Left" Margin="14,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" />
+                                              <TextBlock Text="&#xE721;" Foreground="{StaticResource SecondaryTextBrush}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Left" Margin="14,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" />
                                              <TextBlock Text="What do you want to play?"
                                                         Foreground="#8A8A8A" FontSize="13"
                                                         Margin="40,0,14,0" VerticalAlignment="Center"

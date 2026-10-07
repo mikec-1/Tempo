@@ -38,6 +38,11 @@ a new task.
   - App.xaml has StartupUri="Views/MainWindow.xaml".
   - A Template setter must reference a ControlTemplate, never a Style.
   - MinWidth/MinHeight/MaxWidth/MaxHeight must be numbers, never "Auto".
+  - Attached properties in a Binding path need parentheses:
+    `{Binding (utils:AttachedProperties.ThumbnailColor), RelativeSource=...}`.
+    Without them the binding silently does nothing.
+  - Round elements need a CornerRadius of half their size (48px -> 24).
+    When replacing a control, keep its visual properties (CornerRadius etc.).
   - Run.Text, TextBox.Text and other editable properties bind TwoWay by
     default. Use Mode=OneWay when binding to read-only values.
   - A custom TextBox template must contain

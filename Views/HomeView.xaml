@@ -216,7 +216,7 @@
             <ItemsControl ItemsSource="{Binding QuickAccessItems}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" />
+                        <UniformGrid Columns="3" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -242,7 +242,7 @@
                         <StackPanel Margin="0,8,0,0">
                             <TextBlock Text="{Binding GroupTitle}" Style="{StaticResource GroupHeaderTextStyle}" />
 
-                            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden"
                                           VerticalScrollBarVisibility="Disabled"
                                           Padding="0"
                                            utils:ScrollHelper.BubbleMouseWheel="True">
