@@ -56,54 +56,6 @@
             <Setter Property="Margin" Value="0,0,12,0" />
         </Style>
 
-            <!-- Music card template -->
-        <DataTemplate x:Key="MusicCardTemplate" DataType="{x:Type models:MusicCard}">
-            <Border x:Name="CardBorder" Width="180"
-                    Height="250"
-                    Background="#181818"
-                    CornerRadius="8"
-                    Padding="12">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <!-- Album art placeholder -->
-                    <Border Grid.Row="0"
-                            Height="140"
-                            Background="{Binding ArtColor}"
-                            CornerRadius="4"
-                            Margin="0,0,0,12" />
-
-                    <!-- Title -->
-                    <TextBlock Grid.Row="1"
-                               Text="{Binding Title}"
-                               Foreground="{StaticResource PrimaryTextBrush}"
-                               FontSize="13"
-                               FontWeight="SemiBold"
-                               TextWrapping="Wrap"
-                               Margin="0,0,0,4" />
-
-                    <!-- Description -->
-                    <TextBlock Grid.Row="2"
-                               Text="{Binding Description}"
-                               Foreground="{StaticResource SecondaryTextBrush}"
-                               FontSize="11"
-                               TextWrapping="Wrap"
-                               Height="36" />
-                </Grid>
-            </Border>
-
-            <!-- Card hover + play button -->
-            <DataTemplate.Triggers>
-                <Trigger SourceName="CardBorder" Property="IsMouseOver" Value="True">
-                    <Setter TargetName="CardBorder" Property="Background" Value="#282828" />
-                </Trigger>
-            </DataTemplate.Triggers>
-        </DataTemplate>
-
         <!-- Group header style -->
         <Style x:Key="GroupHeaderTextStyle">
             <Setter Property="Control.Foreground" Value="{StaticResource PrimaryTextBrush}" />
@@ -112,6 +64,73 @@
             <Setter Property="Control.FontWeight" Value="Bold" />
             <Setter Property="Control.Margin" Value="0,24,0,16" />
         </Style>
+
+        <!-- Minimal card button style -->
+        <Style x:Key="MinimalCardButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Music card template with hover -->
+        <DataTemplate x:Key="MusicCardTemplate" DataType="{x:Type models:MusicCard}">
+            <Button Style="{StaticResource MinimalCardButtonStyle}"
+                    Background="#181818"
+                    Command="{Binding DataContext.OpenPlaylistCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    CommandParameter="{Binding Title}">
+                <Border x:Name="CardBorder" Width="180" Height="250" CornerRadius="8" Padding="12">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Album art placeholder -->
+                        <Border Grid.Row="0"
+                                Height="140"
+                                Background="{Binding ArtColor}"
+                                CornerRadius="4"
+                                Margin="0,0,0,12" />
+
+                        <!-- Title -->
+                        <TextBlock Grid.Row="1"
+                                   Text="{Binding Title}"
+                                   Foreground="{StaticResource PrimaryTextBrush}"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,4" />
+
+                        <!-- Description -->
+                        <TextBlock Grid.Row="2"
+                                   Text="{Binding Description}"
+                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                   FontSize="11"
+                                   TextWrapping="Wrap"
+                                   Height="36" />
+                    </Grid>
+                  </Border>
+            </Button>
+
+                 <!-- Card hover + play button -->
+                <DataTemplate.Triggers>
+                    <Trigger SourceName="CardBorder" Property="IsMouseOver" Value="True">
+                        <Setter TargetName="CardBorder" Property="Background" Value="#282828" />
+                    </Trigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
 
     </UserControl.Resources>
 
@@ -164,43 +183,7 @@
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate DataType="{x:Type models:MusicCard}">
-                                            <Button Command="{Binding DataContext.OpenPlaylistCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                    CommandParameter="{Binding Title}"
-                                                    Background="#181818" BorderThickness="0" HorizontalAlignment="Left">
-                                                <Border x:Name="CardBorder" Width="180" Height="250" CornerRadius="8" Padding="12">
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="Auto" />
-                                                            <RowDefinition Height="*" />
-                                                            <RowDefinition Height="Auto" />
-                                                        </Grid.RowDefinitions>
-
-                                                        <!-- Album art placeholder -->
-                                                        <Border Grid.Row="0"
-                                                                Height="140"
-                                                                Background="{Binding ArtColor}"
-                                                                CornerRadius="4"
-                                                                Margin="0,0,0,12" />
-
-                                                        <!-- Title -->
-                                                        <TextBlock Grid.Row="1"
-                                                                   Text="{Binding Title}"
-                                                                   Foreground="{StaticResource PrimaryTextBrush}"
-                                                                   FontSize="13"
-                                                                   FontWeight="SemiBold"
-                                                                   TextWrapping="Wrap"
-                                                                   Margin="0,0,0,4" />
-
-                                                        <!-- Description -->
-                                                        <TextBlock Grid.Row="2"
-                                                                   Text="{Binding Description}"
-                                                                   Foreground="{StaticResource SecondaryTextBrush}"
-                                                                   FontSize="11"
-                                                                   TextWrapping="Wrap"
-                                                                   Height="36" />
-                                                    </Grid>
-                                                 </Border>
-                                            </Button>
+                                            <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource MusicCardTemplate}" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

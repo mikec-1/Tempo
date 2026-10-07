@@ -71,10 +71,32 @@
             </Setter>
         </Style>
 
+        <Style x:Key="MinimalButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#282828" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="PlaylistItemStyle" TargetType="{x:Type ListViewItem}">
             <Setter Property="Padding" Value="12,6" />
             <Setter Property="Margin" Value="8,0" />
             <Setter Property="Background" Value="Transparent" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -82,7 +104,7 @@
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="4"
                                 Padding="{TemplateBinding Padding}">
-                            <ContentPresenter />
+                            <ContentPresenter HorizontalAlignment="Stretch" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -95,9 +117,10 @@
         </Style>
 
         <DataTemplate x:Key="PlaylistItemTemplate" DataType="{x:Type models:PlaylistModel}">
-            <Button Command="{Binding DataContext.OpenPlaylistCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+            <Button Style="{StaticResource MinimalButtonStyle}"
+                    Command="{Binding DataContext.OpenPlaylistCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                     CommandParameter="{Binding}"
-                    Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch">
+                    Background="Transparent">
                 <Grid Margin="4,2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40" />
@@ -106,7 +129,7 @@
                     <Border Width="40" Height="40" Background="{Binding ThumbnailColor}" CornerRadius="4" />
                     <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
                         <TextBlock Text="{Binding Title}" Foreground="{StaticResource PrimaryTextBrush}" FontSize="13" FontWeight="Normal" />
-                        <TextBlock Text="{Binding SongCount, StringFormat={}{0} songs}" Foreground="{StaticResource SecondaryTextBrush}" FontSize="11" Margin="0,2,0,0" />
+                        <TextBlock Text="{Binding SongCount, StringFormat=Playlist \u2022 {0} songs}" Foreground="{StaticResource SecondaryTextBrush}" FontSize="11" Margin="0,2,0,0" />
                     </StackPanel>
                 </Grid>
             </Button>
