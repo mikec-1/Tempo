@@ -114,95 +114,30 @@
 
                         <!-- Left: Back + Forward buttons -->
                         <StackPanel Orientation="Horizontal">
-                            <Button Width="32" Height="32" 
-                                    Background="Transparent" BorderThickness="0"
-                                    Command="{Binding GoBackCommand}" Margin="8,0,0,0" Cursor="Hand">
-                                <Button.Style>
-                                    <Style TargetType="{x:Type Button}">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                    <Border Background="Transparent" CornerRadius="16" x:Name="_border">
-                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                    </Border>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="_border" Property="Background" Value="{StaticResource HoverBrush}" />
-                                                        </Trigger>
-                                                        <Trigger Property="IsEnabled" Value="False">
-                                                            <Setter Property="Opacity" Value="0.4" />
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Button.Style>
+                            <Button Command="{Binding GoBackCommand}" Margin="8,0,0,0" Style="{StaticResource RoundNavButtonStyle}">
                                 <Path Data="{StaticResource BackArrowGeometry}" Fill="{StaticResource PrimaryTextBrush}" Stretch="Uniform" Width="16" Height="16" />
                             </Button>
-                            <Button Width="32" Height="32" 
-                                    Background="Transparent" BorderThickness="0" Margin="4,0,0,0" Cursor="Hand">
-                                <Button.Style>
-                                    <Style TargetType="{x:Type Button}">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                    <Border Background="Transparent" CornerRadius="16" x:Name="_border">
-                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                    </Border>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="_border" Property="Background" Value="{StaticResource HoverBrush}" />
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Button.Style>
+                            <Button IsEnabled="False" Margin="4,0,0,0" Style="{StaticResource RoundNavButtonStyle}">
                                 <Path Data="{StaticResource ForwardArrowGeometry}" Fill="{StaticResource PrimaryTextBrush}" Stretch="Uniform" Width="16" Height="16" />
                             </Button>
                         </StackPanel>
 
                         <!-- Center: Search box -->
                         <TextBox Grid.Column="1" Margin="24,0,0,0" Padding="8,0,30,0"
+                                 Height="40" MaxWidth="480" HorizontalAlignment="Center" VerticalAlignment="Center"
                                  Background="#242424" Foreground="{StaticResource PrimaryTextBrush}"
-                                 BorderThickness="0" FontSize="13" VerticalAlignment="Center">
-                            <TextBox.Resources>
-                                <VisualBrush x:Key="SearchPlaceholder" TileMode="None" Opacity="0.6"
-                                             Stretch="None" AlignmentY="Center">
-                                    <VisualBrush.Visual>
-                                        <TextBlock Text="What do you want to play?" Foreground="{StaticResource SecondaryTextBrush}" />
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </TextBox.Resources>
+                                 BorderThickness="0" FontSize="13" CaretBrush="White">
                             <TextBox.Template>
                                 <ControlTemplate TargetType="{x:Type TextBox}">
                                     <Border Background="{TemplateBinding Background}" CornerRadius="20">
-                                        <Grid>
-                                            <ContentPresenter ContentSource="Text" Visibility="{Binding Text, RelativeSource={RelativeSource AncestorType=TextBox}, Converter={StaticResource ReverseBoolToVisConverter}}" Margin="14,0,0,0" />
-                                            <TextBlock Text="What do you want to play?" Foreground="{StaticResource SecondaryTextBrush}" Margin="14,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False">
-                                                <TextBlock.Style>
-                                                    <Style TargetType="{x:Type TextBlock}">
-                                                        <Setter Property="Visibility" Value="Collapsed" />
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource AncestorType=TextBox}}" Value="">
-                                                                <Setter Property="Visibility" Value="Visible" />
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
-                                            <Path Data="{StaticResource SearchGeometry}" Fill="{StaticResource SecondaryTextBrush}" Stretch="Uniform" Width="14" Height="14" HorizontalAlignment="Right" Margin="0,0,12,0" VerticalAlignment="Center" />
-                                        </Grid>
+                                        <ScrollViewer x:Name="PART_ContentHost" Margin="14,0,30,0" VerticalAlignment="Center" />
                                     </Border>
                                 </ControlTemplate>
                             </TextBox.Template>
                         </TextBox>
 
                         <!-- Right: Profile circle -->
-                        <Button Grid.Column="2" Width="32" Height="32" Margin="16,0,8,0"
-                                Background="{StaticResource AccentBrush}" Cursor="Hand">
+                        <Button Grid.Column="2" Margin="16,0,8,0" Style="{StaticResource ProfileButtonStyle}">
                             <TextBlock Text="M" Foreground="#121212" FontWeight="SemiBold" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Button>
                     </Grid>

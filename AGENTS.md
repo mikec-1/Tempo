@@ -40,6 +40,9 @@ a new task.
   - MinWidth/MinHeight/MaxWidth/MaxHeight must be numbers, never "Auto".
   - Run.Text, TextBox.Text and other editable properties bind TwoWay by
     default. Use Mode=OneWay when binding to read-only values.
+  - A custom TextBox template must contain
+    `<ScrollViewer x:Name="PART_ContentHost" />`, otherwise typed text won't
+    show. (Other controls have required PART_ names too, e.g. PART_Track.)
   - Special characters in XAML use XML entities (e.g. `&#x2022;` for •),
     never C# escapes like `•`.
 - Table-like lists (header row + item rows): header and rows must use the same
