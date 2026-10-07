@@ -47,3 +47,6 @@ a new task.
 - Then STOP and tell me what changed, so I can run and test the app.
 - Never claim something works just because the build passed.
 - If the same error fails 3 times, stop and explain the problem.
+- When you fix a bug caused by a mistake that could happen again, end your
+  summary with "Proposed rule: <one line>". Do NOT edit AGENTS.md yourself.
+  If I reply "add the rule", add that line to "Rules learned from past mistakes".

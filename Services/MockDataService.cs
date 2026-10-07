@@ -42,7 +42,11 @@ namespace Tempo.Services
                 ("Release Radar", 50),
                 ("Daily Mix 1", 60),
                 ("Daily Mix 2", 60),
-                ("Daily Mix 3", 60)
+                ("Daily Mix 3", 60),
+                ("Power Hour", 120),
+                ("Workday Beats", 95),
+                ("Sunrise Sessions", 42),
+                ("Twilight Lounge", 67)
             };
 
             for (int i = 0; i < playlists.Length; i++)
@@ -163,6 +167,94 @@ namespace Tempo.Services
                 });
             }
             _cardGroups.Add(sleep);
+
+            var jazzCards = new (string Title, string Description)[]
+            {
+                ("Jazz Classics", "Playlist"),
+                ("Smooth Jazz", "Playlist"),
+                ("Modern Jazz", "Playlist"),
+                ("Late Night Jazz", "Playlist"),
+                ("Jazz Fusion", "Playlist")
+            };
+
+            var jazz = new CardGroup { GroupTitle = "Jazz" };
+            for (int i = 0; i < jazzCards.Length; i++)
+            {
+                var card = jazzCards[i];
+                jazz.Cards.Add(new MusicCard
+                {
+                    Title = card.Title,
+                    Description = card.Description,
+                    ArtColor = colors[(i + 2) % colors.Length]
+                });
+            }
+            _cardGroups.Add(jazz);
+
+            var electronicCards = new (string Title, string Description)[]
+            {
+                ("Electronic Dreams", "Playlist"),
+                ("Synthwave", "Playlist"),
+                ("Deep House", "Playlist"),
+                ("Techno Bunker", "Playlist"),
+                ("Ambient Spaces", "Playlist")
+            };
+
+            var electronic = new CardGroup { GroupTitle = "Electronic" };
+            for (int i = 0; i < electronicCards.Length; i++)
+            {
+                var card = electronicCards[i];
+                electronic.Cards.Add(new MusicCard
+                {
+                    Title = card.Title,
+                    Description = card.Description,
+                    ArtColor = colors[(i + 4) % colors.Length]
+                });
+            }
+            _cardGroups.Add(electronic);
+
+            var rockCards = new (string Title, string Description)[]
+            {
+                ("Rock Anthems", "Playlist"),
+                ("Indie Rock Mix", "Playlist"),
+                ("Classic Rock Drive", "Playlist"),
+                ("Alternative 2000s", "Playlist"),
+                ("Post Punk Revival", "Playlist")
+            };
+
+            var rock = new CardGroup { GroupTitle = "Rock" };
+            for (int i = 0; i < rockCards.Length; i++)
+            {
+                var card = rockCards[i];
+                rock.Cards.Add(new MusicCard
+                {
+                    Title = card.Title,
+                    Description = card.Description,
+                    ArtColor = colors[(i + 1) % colors.Length]
+                });
+            }
+            _cardGroups.Add(rock);
+
+            var classicalCards = new (string Title, string Description)[]
+            {
+                ("Piano Focus", "Playlist"),
+                ("String Quartets", "Playlist"),
+                ("Orchestral Masters", "Playlist"),
+                ("Modern Composers", "Playlist"),
+                ("Baroque Essentials", "Playlist")
+            };
+
+            var classical = new CardGroup { GroupTitle = "Classical" };
+            for (int i = 0; i < classicalCards.Length; i++)
+            {
+                var card = classicalCards[i];
+                classical.Cards.Add(new MusicCard
+                {
+                    Title = card.Title,
+                    Description = card.Description,
+                    ArtColor = colors[(i + 8) % colors.Length]
+                });
+            }
+            _cardGroups.Add(classical);
         }
     }
 }

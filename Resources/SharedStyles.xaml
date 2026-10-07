@@ -23,4 +23,161 @@
         <Setter Property="BorderThickness" Value="0" />
     </Style>
 
+    <!-- ScrollBar thickness -->
+    <Thickness x:Key="ScrollBarThickness">8</Thickness>
+
+    <!-- Scroll bar track background -->
+    <SolidColorBrush x:Key="ScrollBarTrackBackground" Color="#181818" />
+
+    <!-- Scroll thumb (normal) -->
+    <SolidColorBrush x:Key="ScrollBarThumbNormalBrush" Color="#505050" />
+
+    <!-- Scroll thumb (hover) -->
+    <SolidColorBrush x:Key="ScrollBarThumbHoverBrush" Color="#707070" />
+
+    <!-- Thumb vertical style -->
+    <Style x:Key="ScrollBarThumbVerticalStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="ThumbBorder" Background="{StaticResource ScrollBarThumbNormalBrush}" Width="4" Margin="2" CornerRadius="2">
+                        <Rectangle Fill="#505050" HorizontalAlignment="Center" Width="1" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ThumbBorder" Property="Background" Value="{StaticResource ScrollBarThumbHoverBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Thumb horizontal style -->
+    <Style x:Key="ScrollBarThumbHorizontalStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="ThumbBorder" Background="{StaticResource ScrollBarThumbNormalBrush}" Height="4" Margin="2" CornerRadius="2">
+                        <Rectangle Fill="#505050" VerticalAlignment="Center" Height="1" Width="12" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ThumbBorder" Property="Background" Value="{StaticResource ScrollBarThumbHoverBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Scroll bar increase button -->
+    <Style x:Key="ScrollBarIncreaseRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Scroll bar decrease button -->
+    <Style x:Key="ScrollBarDecreaseRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Vertical ScrollBar -->
+    <Style x:Key="ScrollBarVerticalStyle" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="MinWidth" Value="{StaticResource ScrollBarThickness}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid Background="{StaticResource ScrollBarTrackBackground}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="0.5*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Decrease button -->
+                        <RepeatButton Grid.Row="0" Style="{StaticResource ScrollBarDecreaseRepeatButtonStyle}" />
+
+                        <!-- Track (increases area) -->
+                        <Track x:Name="PART_Track" Grid.Row="1" Orientation="Vertical" IsDirectionReversed="True">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource ScrollBarIncreaseRepeatButtonStyle}" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource ScrollBarIncreaseRepeatButtonStyle}" />
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource ScrollBarThumbVerticalStyle}" />
+                            </Track.Thumb>
+                        </Track>
+
+                        <!-- Increase button -->
+                        <RepeatButton Grid.Row="2" Style="{StaticResource ScrollBarIncreaseRepeatButtonStyle}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Horizontal ScrollBar -->
+    <Style x:Key="ScrollBarHorizontalStyle" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="MinHeight" Value="{StaticResource ScrollBarThickness}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid Background="{StaticResource ScrollBarTrackBackground}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="0.5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Decrease button -->
+                        <RepeatButton Grid.Column="0" Style="{StaticResource ScrollBarDecreaseRepeatButtonStyle}" />
+
+                        <!-- Track (increases area) -->
+                        <Track x:Name="PART_Track" Grid.Column="1">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource ScrollBarIncreaseRepeatButtonStyle}" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource ScrollBarIncreaseRepeatButtonStyle}" />
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource ScrollBarThumbHorizontalStyle}" />
+                            </Track.Thumb>
+                        </Track>
+
+                        <!-- Increase button -->
+                        <RepeatButton Grid.Column="2" Style="{StaticResource ScrollBarIncreaseRepeatButtonStyle}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Global ScrollBar style -->
+    <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="Background" Value="{StaticResource ScrollBarTrackBackground}" />
+        <Setter Property="MinWidth" Value="{StaticResource ScrollBarThickness}" />
+        <Setter Property="Template" Value="{StaticResource ScrollBarVerticalStyle}" />
+    </Style>
+
 </ResourceDictionary>
