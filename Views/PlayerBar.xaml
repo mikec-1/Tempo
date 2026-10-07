@@ -21,6 +21,15 @@
         <SolidColorBrush x:Key="PlayerBarProgressBackgroundBrush" Color="#4D4D4D" />
         <SolidColorBrush x:Key="PlayerBarProgressForegroundBrush" Color="#FFFFFF" />
 
+        <!-- Shared slider repeat button templates -->
+        <ControlTemplate x:Key="SliderRepeatButtonTemplate" TargetType="{x:Type RepeatButton}">
+            <Border Background="#FFFFFF" Height="4" CornerRadius="2" />
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="SliderIncreaseRepeatButtonTemplate" TargetType="{x:Type RepeatButton}">
+            <Border Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" CornerRadius="2" />
+        </ControlTemplate>
+
         <!-- Control button style -->
         <Style x:Key="ControlButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="32" />
@@ -230,15 +239,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-        <!-- Shared slider repeat button templates -->
-        <ControlTemplate x:Key="SliderRepeatButtonTemplate" TargetType="{x:Type RepeatButton}">
-            <Border Background="#FFFFFF" Height="4" CornerRadius="2" />
-        </ControlTemplate>
-
-        <ControlTemplate x:Key="SliderIncreaseRepeatButtonTemplate" TargetType="{x:Type RepeatButton}">
-            <Border Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" CornerRadius="2" />
-        </ControlTemplate>
 
         <!-- Track info text style -->
         <Style x:Key="TrackTitleStyle">

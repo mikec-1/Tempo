@@ -25,6 +25,9 @@ namespace Tempo
                 catch { }
 
                 args.Handled = true;
+
+                if (MainWindow == null || !MainWindow.IsVisible)
+                    Shutdown();
             };
             base.OnStartup(e);
         }

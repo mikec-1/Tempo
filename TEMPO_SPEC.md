@@ -62,18 +62,11 @@ Views/, Services/MockDataService.cs, Utils/RelayCommand.cs, Converters/.
 All colors and styles in Resources/SharedStyles.xaml. Every UserControl has its
 .xaml.cs file.
 
-## How to work (important)
-- This folder is already a git repository. Do not run git init.
-- Work in small steps. Order:
+## Build steps
+Work rules (commands, conventions, lessons learned) are in AGENTS.md.
   1. Project file + App + empty dark window that builds and runs
   2. Shared styles and theme
   3. Sidebar
   4. Player bar
   5. Home content area
   6. Playlist view and navigation
-- After EVERY step, run `dotnet build`. Fix all errors before moving on.
-- After each successful step, run `git add -A`, then as a separate command
-  `git commit -m "<step description>"`. Do not chain commands with &&.
-- After each step, briefly tell me what you did and whether the build passed.
-- Never claim something works unless `dotnet build` succeeded.
-- If you fix the same error 3 times without success, stop and tell me.
