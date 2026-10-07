@@ -125,12 +125,13 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Slider}">
                         <Grid>
+                            <Border x:Name="HoverBar" Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" CornerRadius="2" />
                             <Track x:Name="PART_Track">
                                 <Track.DecreaseRepeatButton>
-                                    <RepeatButton Background="#FFFFFF" Height="4" />
+                                    <RepeatButton Focusable="False" Template="{StaticResource SliderRepeatButtonTemplate}" />
                                 </Track.DecreaseRepeatButton>
                                 <Track.IncreaseRepeatButton>
-                                    <RepeatButton Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" />
+                                    <RepeatButton Focusable="False" Template="{StaticResource SliderIncreaseRepeatButtonTemplate}" />
                                 </Track.IncreaseRepeatButton>
                                 <Track.Thumb>
                                     <Thumb Width="12" Height="12">
@@ -139,12 +140,18 @@
                                                 <Setter Property="Template">
                                                     <Setter.Value>
                                                         <ControlTemplate TargetType="{x:Type Thumb}">
-                                                            <Ellipse x:Name="ThumbCircle" Fill="#FFFFFF" Width="12" Height="12" Visibility="Collapsed" />
-                                                            <ControlTemplate.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter TargetName="ThumbCircle" Property="Visibility" Value="Visible" />
-                                                                </Trigger>
-                                                            </ControlTemplate.Triggers>
+                                                            <Ellipse Fill="#FFFFFF" Width="12" Height="12" Opacity="0">
+                                                                <Ellipse.Style>
+                                                                    <Style TargetType="{x:Type Ellipse}">
+                                                                        <Setter Property="Opacity" Value="0" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Slider}}" Value="True">
+                                                                                <Setter Property="Opacity" Value="1" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Ellipse.Style>
+                                                            </Ellipse>
                                                         </ControlTemplate>
                                                     </Setter.Value>
                                                 </Setter>
@@ -171,12 +178,13 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Slider}">
                         <Grid>
+                            <Border x:Name="HoverBar" Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" CornerRadius="2" />
                             <Track x:Name="PART_Track">
                                 <Track.DecreaseRepeatButton>
-                                    <RepeatButton Background="#FFFFFF" Height="4" />
+                                    <RepeatButton Focusable="False" Template="{StaticResource SliderRepeatButtonTemplate}" />
                                 </Track.DecreaseRepeatButton>
                                 <Track.IncreaseRepeatButton>
-                                    <RepeatButton Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" />
+                                    <RepeatButton Focusable="False" Template="{StaticResource SliderIncreaseRepeatButtonTemplate}" />
                                 </Track.IncreaseRepeatButton>
                                 <Track.Thumb>
                                     <Thumb Width="12" Height="12">
@@ -185,12 +193,18 @@
                                                 <Setter Property="Template">
                                                     <Setter.Value>
                                                         <ControlTemplate TargetType="{x:Type Thumb}">
-                                                            <Ellipse x:Name="ThumbCircle" Fill="#FFFFFF" Width="12" Height="12" Visibility="Collapsed" />
-                                                            <ControlTemplate.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter TargetName="ThumbCircle" Property="Visibility" Value="Visible" />
-                                                                </Trigger>
-                                                            </ControlTemplate.Triggers>
+                                                            <Ellipse Fill="#FFFFFF" Width="12" Height="12" Opacity="0">
+                                                                <Ellipse.Style>
+                                                                    <Style TargetType="{x:Type Ellipse}">
+                                                                        <Setter Property="Opacity" Value="0" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Slider}}" Value="True">
+                                                                                <Setter Property="Opacity" Value="1" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Ellipse.Style>
+                                                            </Ellipse>
                                                         </ControlTemplate>
                                                     </Setter.Value>
                                                 </Setter>
@@ -204,6 +218,27 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Hover bar green style -->
+        <Style x:Key="HoverBarGreenStyle" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource PlayerBarProgressBackgroundBrush}" />
+            <Setter Property="Height" Value="4" />
+            <Setter Property="CornerRadius" Value="2" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Slider}}" Value="True">
+                    <Setter Property="Background" Value="#1ED760" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Shared slider repeat button templates -->
+        <ControlTemplate x:Key="SliderRepeatButtonTemplate" TargetType="{x:Type RepeatButton}">
+            <Border Background="#FFFFFF" Height="4" CornerRadius="2" />
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="SliderIncreaseRepeatButtonTemplate" TargetType="{x:Type RepeatButton}">
+            <Border Background="{StaticResource PlayerBarProgressBackgroundBrush}" Height="4" CornerRadius="2" />
+        </ControlTemplate>
 
         <!-- Track info text style -->
         <Style x:Key="TrackTitleStyle">
