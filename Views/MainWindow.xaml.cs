@@ -1,5 +1,6 @@
 using System;
 using System.Windows;
+using System.Windows.Media;
 using Tempo.ViewModels;
 
 namespace Tempo.Views
@@ -10,38 +11,21 @@ namespace Tempo.Views
         {
             InitializeComponent();
             DataContext = new MainViewModel();
-            MouseLeftButtonDown += OnTitleBarMouseLeftButtonDown;
-            MouseDoubleClick += OnTitleBarMouseDoubleClick;
-        }
-
-        private void OnTitleBarMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
-        private void OnTitleBarMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-            }
         }
 
         protected override void OnStateChanged(EventArgs e)
         {
             base.OnStateChanged(e);
-            
+
             if (WindowState == WindowState.Maximized)
             {
-                Margin = new Thickness(-8, 0, -8, -8);
+                RootGrid.Margin = new Thickness(8, 0, 0, 0);
+                MaximizeIcon.Data = (Geometry)FindResource("RestoreGeometry");
             }
             else
             {
-                Margin = new Thickness(0);
+                RootGrid.Margin = new Thickness(0);
+                MaximizeIcon.Data = (Geometry)FindResource("MaximizeGeometry");
             }
         }
 

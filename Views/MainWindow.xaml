@@ -103,7 +103,7 @@
 
             <!-- Main Content Area -->
             <Border Grid.Column="1" Margin="16,0,0,0">
-                <Grid>
+    <Grid x:Name="RootGrid">
                     <!-- Back button bar -->
                     <StackPanel Orientation="Horizontal" 
                                 VerticalAlignment="Top">
