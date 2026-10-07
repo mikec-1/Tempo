@@ -74,6 +74,8 @@ a new task.
 - Only read and write files inside this project folder. No temp files elsewhere.
 - Custom control templates must replace the default Windows look completely
   (Button, RepeatButton, ScrollBar, Thumb): no borders or blue hover left over.
+- Never put a Button inside another Button. Make the inner one a visual element
+  (e.g. a Border) with IsHitTestVisible="False"; the outer one handles the click.
 - Don't place transparent overlay elements on top of interactive controls
   (later siblings in a Grid draw on top). They block mouse hover and clicks.
 - An element with Visibility="Collapsed" can't receive mouse events. Use
