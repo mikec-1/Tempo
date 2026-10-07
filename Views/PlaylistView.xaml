@@ -10,16 +10,17 @@
         <!-- Track row style -->
         <Style x:Key="TrackRowStyle" TargetType="{x:Type ListViewItem}">
             <Setter Property="Padding" Value="0,6,0,6" />
-            <Setter Property="Margin" Value="0,0,48,0" />
+            <Setter Property="Margin" Value="0" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListViewItem}">
                         <Border x:Name="Border"
                                 Background="{TemplateBinding Background}"
                                 Padding="{TemplateBinding Padding}">
-                            <ContentPresenter />
+                            <ContentPresenter HorizontalAlignment="Stretch" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -36,7 +37,7 @@
 
         <!-- Track item template -->
         <DataTemplate x:Key="TrackItemTemplate" DataType="{x:Type models:TrackModel}">
-            <Grid Margin="0,2">
+            <Grid Margin="24,0,72,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition Width="*" />
@@ -47,18 +48,17 @@
 
                 <!-- Number / Play button -->
                 <Grid Grid.Column="0" HorizontalAlignment="Center">
-                    <TextBlock x:Name="NumText" Foreground="{StaticResource SecondaryTextBrush}" FontSize="13" VerticalAlignment="Center" />
+                    <TextBlock x:Name="NumText" Text="{Binding Number}" Foreground="{StaticResource SecondaryTextBrush}" FontSize="13" VerticalAlignment="Center" />
                     <Path x:Name="PlayIcon" Data="{StaticResource PlayIconGeometry}" Fill="{StaticResource AccentBrush}" 
                           Stretch="Uniform" Width="14" Height="14" Opacity="0"
                           VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </Grid>
 
                 <!-- Title / Artist -->
-                <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Title}" Foreground="{StaticResource PrimaryTextBrush}" FontSize="13" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding Artist}" Foreground="{StaticResource SecondaryTextBrush}" FontSize="11" 
-                               VerticalAlignment="Bottom" Margin="0,0,0,1" />
-                </Grid>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Title}" Foreground="{StaticResource PrimaryTextBrush}" FontSize="13" />
+                    <TextBlock Text="{Binding Artist}" Foreground="{StaticResource SecondaryTextBrush}" FontSize="11" Margin="0,2,0,0" />
+                </StackPanel>
 
                 <!-- Album -->
                 <TextBlock Grid.Column="2" Text="{Binding Album}" 
@@ -66,12 +66,9 @@
                            VerticalAlignment="Center" 
                            TextTrimming="CharacterEllipsis" />
 
-                <!-- Date added (mock relative dates from item index) -->
-                <TextBlock Grid.Column="3" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" 
-                           VerticalAlignment="Center">
-                    <Run Text="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=(ItemsControl.AlternationIndex)}" />
-                    <Run Text=" days ago" />
-                </TextBlock>
+                <!-- Date added -->
+                <TextBlock Grid.Column="3" Text="{Binding DateAdded}" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" 
+                           VerticalAlignment="Center" />
 
                 <!-- Duration -->
                 <TextBlock Grid.Column="4" Text="{Binding Duration, StringFormat={}{0:mm\\:ss}}" 
@@ -126,29 +123,28 @@
                 <Grid Margin="24,8,72,12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="48" />
-                        <ColumnDefinition Width="*" MinWidth="200" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="200" />
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" FontWeight="Normal" />
+                    <TextBlock Grid.Column="0" Text="#" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" FontWeight="Normal" />
                     <TextBlock Grid.Column="1" Text="Title" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" FontWeight="Normal" />
                     <TextBlock Grid.Column="2" Text="Album" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" FontWeight="Normal" />
                     <TextBlock Grid.Column="3" Text="Date Added" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" FontWeight="Normal" />
-                    <TextBlock Grid.Column="4" Text="#" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" FontWeight="Normal" />
+                    <TextBlock Grid.Column="4" Text="Duration" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" FontWeight="Normal" HorizontalAlignment="Right" />
                 </Grid>
 
                 <!-- Divider -->
                 <Border Height="1" Background="#282828" Margin="24,0,72,0" />
 
-                <!-- Track list with alternating dates -->
+                <!-- Track list -->
                 <ListView ItemsSource="{Binding Tracks}"
                           ItemTemplate="{StaticResource TrackItemTemplate}"
                           ItemContainerStyle="{StaticResource TrackRowStyle}"
                           Background="Transparent"
                           BorderThickness="0"
-                          AlternationCount="100"
                           Margin="0,4,0,24">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>

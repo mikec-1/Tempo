@@ -185,7 +185,9 @@ namespace Tempo.Services
                         Title = t.Title,
                         Artist = t.Artist,
                         Album = playlists[i].Title + " (Album)",
-                        Duration = t.Duration
+                        Duration = t.Duration,
+                        Number = j + 1,
+                        DateAdded = GetDateAdded(j, pool.Length)
                     });
                 }
 
@@ -199,7 +201,9 @@ namespace Tempo.Services
                         Title = dup.Title + " (Remix)",
                         Artist = dup.Artist,
                         Album = playlists[i].Title + " (Album)",
-                        Duration = dup.Duration
+                        Duration = dup.Duration,
+                        Number = tracks.Count + 1,
+                        DateAdded = GetDateAdded(tracks.Count, pool.Length)
                     });
                 }
 
@@ -402,6 +406,22 @@ namespace Tempo.Services
                 });
             }
             _cardGroups.Add(classical);
+        }
+
+        private static string GetDateAdded(int index, int poolLength)
+        {
+            var now = DateTime.Now;
+            if (index == 0) return "3 days ago";
+            if (index < 5)
+            {
+                int daysAgo = 7 + index * 2;
+                return $"{daysAgo} days ago";
+            }
+            int daysBack = 14 + (index % 60);
+            var date = now.AddDays(-daysBack);
+            if (daysBack < 30)
+                return $"{date.Day} days ago";
+            return date.ToString("MMM d, yyyy");
         }
     }
 }

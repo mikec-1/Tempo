@@ -38,9 +38,20 @@ a new task.
   - App.xaml has StartupUri="Views/MainWindow.xaml".
   - A Template setter must reference a ControlTemplate, never a Style.
   - MinWidth/MinHeight/MaxWidth/MaxHeight must be numbers, never "Auto".
+  - Run.Text, TextBox.Text and other editable properties bind TwoWay by
+    default. Use Mode=OneWay when binding to read-only values.
+- Table-like lists (header row + item rows): header and rows must use the same
+  margins and column widths, and ListViewItem needs
+  HorizontalContentAlignment="Stretch" so rows fill the width.
+- Put multiple stacked texts in a StackPanel, not in the same Grid cell.
 - ScrollBars: use ONE implicit ScrollBar style with an Orientation="Horizontal"
   trigger that switches to the horizontal template.
 - Array and list indexes must stay in range (use `% array.Length` for colors).
+- Int math with large numbers (seeds, hashes) can overflow and go negative, and
+  a negative number % n stays negative. Don't multiply seeds; use
+  `(seed + j) % length`, or `Math.Abs(x % length)` for indexes.
+- To fix a build error, fix the code. Don't delete a feature (like a hover
+  effect) to make the error go away, unless I agree.
 - Custom control templates must replace the default Windows look completely
   (Button, RepeatButton, ScrollBar, Thumb): no borders or blue hover left over.
 - An element with Visibility="Collapsed" can't receive mouse events. Use

@@ -18,6 +18,8 @@ namespace Tempo.Models
         public string Artist { get; set; } = "";
         public string Album { get; set; } = "";
         public TimeSpan Duration { get; set; }
+        public int Number { get; set; }
+        public string DateAdded { get; set; } = "";
     }
 
     public class QuickAccessItem
