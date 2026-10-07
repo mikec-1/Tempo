@@ -8,6 +8,8 @@ namespace Tempo.Models
         public string Title { get; set; } = "";
         public int SongCount { get; set; }
         public string ThumbnailColor { get; set; } = "";
+        public string Owner { get; set; } = "Tempo";
+        public List<TrackModel> Tracks { get; set; } = new();
     }
 
     public class TrackModel

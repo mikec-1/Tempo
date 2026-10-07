@@ -108,4 +108,20 @@
         </Style.Triggers>
     </Style>
 
+    <!-- Converter: null → Visible, non-null → Collapsed -->
+    <BooleanToVisibilityConverter x:Key="ReverseBoolToVisConverter" />
+
+    <!-- Back arrow geometry (left-pointing) -->
+    <Geometry x:Key="BackArrowGeometry">M15.41 16.09L10.83 11.5L15.41 6.91L14 5.5L8 11.5L14 17.5L15.41 16.09Z</Geometry>
+
+    <!-- NullToVisibilityConverter -->
+    <Style x:Key="NullToVisibleStyle" TargetType="{x:Type UIElement}">
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding CurrentPlaylist}" Value="{x:Null}">
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

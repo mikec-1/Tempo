@@ -70,3 +70,32 @@ Work rules (commands, conventions, lessons learned) are in AGENTS.md.
   4. Player bar
   5. Home content area
   6. Playlist view and navigation
+  7. Custom dark title bar
+     - Replace the white Windows title bar using the built-in WindowChrome
+       class (no NuGet). Bar is 32px tall, background #121212.
+     - Left: small Tempo logo + "Tempo" text. Right: minimize, maximize/restore
+       and close buttons (close turns red #E81123 on hover, others #282828).
+     - Buttons need WindowChrome.IsHitTestVisibleInChrome="True".
+     - Dragging the bar moves the window; double-click maximizes/restores.
+     - When maximized, add a margin so content isn't cut off at the screen edges.
+  8. Top bar (top of the main content area, above Home and Playlist views)
+     - Back and forward round buttons on the left. Back uses the navigation
+       from step 6; disabled (dimmed) when there's nowhere to go.
+     - Search box in the middle: rounded (CornerRadius 20), #242424 background,
+       search icon, placeholder "What do you want to play?". Visual only.
+     - Profile circle on the right: 32px circle with a letter, e.g. "M".
+  9. Green play button on card hover
+     - Every card in the Home card rows gets a 48px round #1ED760 button with a
+       black play icon at the bottom-right of the art.
+     - Hidden by default (Opacity 0, NOT Collapsed). On card hover it fades to
+       Opacity 1 and slides up a few pixels (short animation, ~150ms).
+     - Same for the 6 quick-access tiles (smaller button, right side of tile).
+  10. Final build: single .exe
+     - Run: dotnet publish -c Release -r win-x64 --self-contained true
+       -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+       -p:EnableCompressionInSingleFile=true -o publish
+     - Do NOT use PublishTrimmed (WPF doesn't support trimming).
+     - Add publish/ to .gitignore. Report the size of publish\Tempo.exe.
+
+After step 10, compare everything in the Layout and Interactions sections above
+with what is built, and list anything still missing.
