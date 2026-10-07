@@ -29,6 +29,6 @@
         </Grid>
 
         <!-- Player Bar -->
-        <views:PlayerBar Grid.Row="1" />
+        <views:PlayerBar Grid.Row="1" DataContext="{Binding PlayerBar}" />
     </Grid>
 </Window>

@@ -197,8 +197,8 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Width="48" Height="48" Background="{StaticResource TrackThumbnailBrush}" CornerRadius="4" />
             <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
-                <TextBlock Text="Late Night Drive" Style="{StaticResource TrackTitleStyle}" />
-                <TextBlock Text="The Midnight" Style="{StaticResource TrackArtistStyle}" Margin="0,2,0,0" />
+                <TextBlock Text="{Binding TrackTitle}" Style="{StaticResource TrackTitleStyle}" />
+                <TextBlock Text="{Binding Artist}" Style="{StaticResource TrackArtistStyle}" Margin="0,2,0,0" />
             </StackPanel>
             <Button Grid.Column="2" Style="{StaticResource HeartButtonStyle}" Margin="-8,0,0,0">
                 <Path Data="{StaticResource HeartIcon}" Fill="#B3B3B3" Stretch="Uniform" Width="16" Height="16" />
@@ -215,8 +215,18 @@
                 <Button Style="{StaticResource ControlButtonStyle}" Margin="0,0,8,0">
                     <Path Data="{StaticResource PreviousIcon}" Fill="#B3B3B3" Stretch="Uniform" Width="16" Height="16" />
                 </Button>
-                <Button Style="{StaticResource PlayPauseButtonStyle}" Margin="0,0,8,0">
-                    <Path x:Name="PlayPauseIcon" Data="{StaticResource PlayIcon}" Fill="#121212" Stretch="Uniform" Width="16" Height="16" />
+                <Button Style="{StaticResource PlayPauseButtonStyle}" Margin="0,0,8,0" Command="{Binding PlayPauseCommand}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Path}">
+                            <Setter Property="Data" Value="{StaticResource PlayIcon}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsPlaying}" Value="False">
+                                    <Setter Property="Data" Value="{StaticResource PauseIcon}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Resources>
+                    <Path Fill="#121212" Stretch="Uniform" Width="16" Height="16" />
                 </Button>
                 <Button Style="{StaticResource ControlButtonStyle}" Margin="0,0,4,0">
                     <Path Data="{StaticResource NextIcon}" Fill="#B3B3B3" Stretch="Uniform" Width="16" Height="16" />
@@ -234,7 +244,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="1:24" Foreground="#B3B3B3" FontSize="11" VerticalAlignment="Center" Margin="8,0,8,0" />
-                <Slider Grid.Column="1" Style="{StaticResource ProgressBarStyle}" Margin="8,0" ValueChanged="ProgressBar_ValueChanged" />
+                <Slider Grid.Column="1" Style="{StaticResource ProgressBarStyle}" Margin="8,0" Value="{Binding Progress, Mode=TwoWay}" />
                 <TextBlock Text="3:45" Foreground="#B3B3B3" FontSize="11" VerticalAlignment="Center" Margin="8,0,8,0" Grid.Column="2" />
             </Grid>
         </StackPanel>
@@ -263,7 +273,7 @@
             <Path Grid.Column="2" Data="{StaticResource VolumeIcon}" Fill="#B3B3B3" Stretch="Uniform" Width="16" Height="16" Margin="-8,0,8,0" VerticalAlignment="Center" />
 
             <!-- Volume Slider -->
-            <Slider Grid.Column="3" Style="{StaticResource VolumeSliderStyle}" Margin="0,0,12,0" />
+            <Slider Grid.Column="3" Style="{StaticResource VolumeSliderStyle}" Margin="0,0,12,0" Value="{Binding Volume, Mode=TwoWay}" />
 
             <!-- Mini Volume Icon (alternative) -->
             <Path Grid.Column="4" Data="{StaticResource VolumeIcon}" Fill="#B3B3B3" Stretch="Uniform" Width="16" Height="16" VerticalAlignment="Center" />
