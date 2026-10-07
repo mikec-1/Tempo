@@ -46,6 +46,10 @@ a new task.
   margins and column widths, and ListViewItem needs
   HorizontalContentAlignment="Stretch" so rows fill the width.
 - Put multiple stacked texts in a StackPanel, not in the same Grid cell.
+- When you add or remove a row/column in a Grid, update the Grid.Row/Grid.Column
+  of EVERY child of that Grid.
+- x:Name an element only after checking it's the right one (e.g. the window's
+  outermost Grid, not a nested one).
 - ScrollBars: use ONE implicit ScrollBar style with an Orientation="Horizontal"
   trigger that switches to the horizontal template.
 - Array and list indexes must stay in range (use `% array.Length` for colors).

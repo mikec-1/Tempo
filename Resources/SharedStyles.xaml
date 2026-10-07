@@ -111,8 +111,10 @@
     <!-- Converter: null → Visible, non-null → Collapsed -->
     <BooleanToVisibilityConverter x:Key="ReverseBoolToVisConverter" />
 
-    <!-- Back arrow geometry (left-pointing) -->
+    <!-- Navigation arrow geometries -->
     <Geometry x:Key="BackArrowGeometry">M15.41 16.09L10.83 11.5L15.41 6.91L14 5.5L8 11.5L14 17.5L15.41 16.09Z</Geometry>
+    <Geometry x:Key="ForwardArrowGeometry">M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z</Geometry>
+    <Geometry x:Key="SearchGeometry">M15.5 14h-1.7l-.5-.5A5.5 5.5 0 0 0 21 8.5a5.5 5.5 0 1 0-6.5 5.3v1.7l.5.5h1.7l4.8 4.8 1.2-1.2-4.8-4.8zM8.5 13a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z</Geometry>
 
     <!-- Window control geometries -->
     <Geometry x:Key="MinimizeGeometry">M3 7h10v2H3z</Geometry>
