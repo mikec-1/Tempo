@@ -20,12 +20,12 @@ namespace Tempo.Views
             if (WindowState == WindowState.Maximized)
             {
                 RootGrid.Margin = new Thickness(8);
-                MaximizeIcon.Data = (Geometry)FindResource("RestoreGeometry");
+                MaximizeIcon.Text = "\uE923";
             }
             else
             {
                 RootGrid.Margin = new Thickness(0);
-                MaximizeIcon.Data = (Geometry)FindResource("MaximizeGeometry");
+                MaximizeIcon.Text = "\uE922";
             }
         }
 

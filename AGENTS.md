@@ -49,6 +49,11 @@ a new task.
   margins and column widths, and ListViewItem needs
   HorizontalContentAlignment="Stretch" so rows fill the width.
 - Put multiple stacked texts in a StackPanel, not in the same Grid cell.
+- Standard window icons (minimize, maximize, restore, close) use the built-in
+  "Segoe MDL2 Assets" font (E921, E922, E923, E8BB). Don't hand-draw them.
+- Never put a ScrollViewer or ListView inside another ScrollViewer without
+  passing the mouse wheel through: give the ListView a template with only an
+  ItemsPresenter, or use Utils/ScrollHelper BubbleMouseWheel on the inner one.
 - When you add or remove a row/column in a Grid, update the Grid.Row/Grid.Column
   of EVERY child of that Grid.
 - x:Name an element only after checking it's the right one (e.g. the window's
